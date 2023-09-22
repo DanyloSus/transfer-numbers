@@ -11,6 +11,7 @@ import {
   Stack,
 } from "@mui/material";
 import ToTen from "./ToTen";
+import ToSome from "./ToSome";
 
 const Calculator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -20,6 +21,7 @@ const Calculator = () => {
 
   const [visual, setVisual] = useState("");
   const [visualT, setVisualT] = useState(2);
+  const [visualTT, setVisualTT] = useState(2);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -85,6 +87,7 @@ const Calculator = () => {
         break;
     }
 
+    setVisualTT(to);
     setOutputValue(result);
     setVisual(inputValue);
   };
@@ -157,7 +160,7 @@ const Calculator = () => {
       </Button>
       {outputValue !== null && (
         <Typography variant="h6" color="error.main">
-          Результат: {outputValue}
+          Результат: {outputValue.toUpperCase()}
         </Typography>
       )}
       {outputValue === null && inputValue && (
@@ -165,15 +168,33 @@ const Calculator = () => {
           Некоректне введення
         </Typography>
       )}
-      {outputValue !== null && visual !== "" && to === 10 && visualT && (
+      {visualT !== 10 && visualTT === 10 && (
         <ToTen numberP={visual} base={visualT} />
       )}
       {outputValue !== null &&
         visual !== "" &&
-        to !== 10 &&
-        visualT &&
-        conversionType !== "decimal" && (
-          <ToTen numberP={visual} base={visualT} />
+        visualT != 10 &&
+        visualTT != 10 && (
+          <>
+            <ToTen numberP={visual} base={visualT} />
+            <ToSome
+              numberP={parseFloatWithRadix(visual.toString(), visualT).toString(
+                10
+              )}
+              base={visualTT}
+            />
+          </>
+        )}
+      {outputValue !== null &&
+        visual !== "" &&
+        visualT === 10 &&
+        visualTT !== 10 && (
+          <ToSome
+            numberP={parseFloatWithRadix(visual.toString(), visualT).toString(
+              10
+            )}
+            base={visualTT}
+          />
         )}
     </Container>
   );
