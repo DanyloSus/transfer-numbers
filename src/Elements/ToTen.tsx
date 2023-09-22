@@ -91,7 +91,7 @@ const ToTen = ({ numberP, base }: ToTenProps) => {
       calc1.push(
         <span key={nanoid()}>
           {" + "}
-          {check16(number.toString()[i])}x{base}
+          {check16(numberSecondPart.toString()[i])}x{base}
           <span style={{ fontSize: "0.8em", verticalAlign: "super" }}>
             {step}
           </span>
@@ -105,7 +105,7 @@ const ToTen = ({ numberP, base }: ToTenProps) => {
       calc2.push(
         <span key={nanoid()}>
           {" + "}
-          {Number(check16(number.toString()[i]))}x{base ** step}
+          {Number(check16(numberSecondPart.toString()[i]))}x{base ** step}
         </span>
       );
       step--;
@@ -116,7 +116,7 @@ const ToTen = ({ numberP, base }: ToTenProps) => {
       calc3.push(
         <span key={nanoid()}>
           {" + "}
-          {Number(check16(number.toString()[i])) * base ** step}
+          {Number(check16(numberSecondPart.toString()[i])) * base ** step}
         </span>
       );
       step--;

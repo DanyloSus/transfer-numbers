@@ -122,8 +122,11 @@ const ToSome = ({ numberP, base }: ToSomeProps) => {
         </Stack>
       </Stack>
       <Typography color="error.main">
-        {answ.split("").reverse().join("")}
-        {secAnsw &&
+        Результат: {answ.split("").reverse().join("")}
+        {secAnsw
+          .slice(1)
+          .substring(0, 3)
+          .replace(/\.?0+$/, "") &&
           `.${secAnsw
             .slice(1)
             .substring(0, 3)
